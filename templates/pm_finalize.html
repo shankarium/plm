@@ -1,0 +1,30 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h4>Finalize Concept #{{ concept.id }} (ND {{ concept.nd_no }})</h4>
+<form method="post" enctype="multipart/form-data" class="row g-3">
+  <div class="col-md-3">
+    <label class="form-label">Margin %</label>
+    <input class="form-control" name="margin_pct" type="number" step="0.1">
+  </div>
+  <div class="col-md-12">
+    <label class="form-label">Selling Story / USPs</label>
+    <textarea class="form-control" name="selling_story" rows="3"></textarea>
+  </div>
+  <div class="col-md-12">
+    <label class="form-label">Sales Remarks</label>
+    <textarea class="form-control" name="sales_remarks" rows="2"></textarea>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Presentation Image (upload)</label>
+    <input type="file" name="final_image_file" class="form-control">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Presentation Image URL (optional)</label>
+    <input class="form-control" name="final_presentation_image_url" placeholder="https://...">
+  </div>
+  <div class="col-12">
+    <button class="btn btn-success">Publish to Sales</button>
+  </div>
+</form>
+{% endblock %}

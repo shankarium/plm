@@ -1,0 +1,77 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h4>New Market Brief (PM)</h4>
+<form method="post" enctype="multipart/form-data">
+  <div class="row g-3">
+    <div class="col-md-3">
+      <label class="form-label">Project No</label>
+      <input class="form-control" name="project_no" required>
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Season/Quarter</label>
+      <input class="form-control" name="season">
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Brand</label>
+      <input class="form-control" name="brand">
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Subcategory</label>
+      <input class="form-control" name="subcategory">
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Design type</label>
+      <input class="form-control" name="design">
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Target MRP</label>
+      <input class="form-control" name="target_mrp" type="number">
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Market focus</label>
+      <input class="form-control" name="market_focus" placeholder="e.g., Domestic - South">
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Expected Sales Qty (total)</label>
+      <input class="form-control" name="expected_sales_qty" type="number">
+    </div>
+    <div class="col-12"><hr></div>
+    <div class="col-12"><strong>State-wise initial quantity</strong></div>
+    {% for s in ["kerala","tn","ka","ap","ts","mh","gj","rj","dl","wb","other"] %}
+    <div class="col-md-2">
+      <label class="form-label text-uppercase">{{ s }}</label>
+      <input class="form-control" name="stateqty_{{ s }}" type="number" min="0">
+    </div>
+    {% endfor %}
+    <div class="col-12"><hr></div>
+    <div class="col-md-3">
+      <label class="form-label">% Adaptation</label>
+      <input class="form-control" name="sample_adaptation_pct" type="number" min="0" max="100">
+    </div>
+    <div class="col-md-9">
+      <label class="form-label">Color requirements</label>
+      <input class="form-control" name="color_requirements" placeholder="Full BLK; BRN insole + TAN upper ...">
+    </div>
+    <div class="col-12">
+      <label class="form-label">PM General Remarks</label>
+      <textarea class="form-control" name="pm_general_remarks" rows="3"></textarea>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Reference Image (upload)</label>
+      <input type="file" name="pm_reference_image_file" class="form-control">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Reference Image URL (optional)</label>
+      <input class="form-control" name="pm_reference_image_url" placeholder="https://...">
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Created By</label>
+      <input class="form-control" name="created_by" value="pm_user@company.com">
+    </div>
+    <div class="col-12 mt-3">
+      <button class="btn btn-primary">Save Draft</button>
+    </div>
+  </div>
+</form>
+{% endblock %}

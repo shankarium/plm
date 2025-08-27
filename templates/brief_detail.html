@@ -1,0 +1,39 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h4>Brief #{{ brief.id }} – {{ brief.project_no }}</h4>
+<div class="row g-3">
+  <div class="col-md-8">
+    <table class="table table-sm">
+      <tr><th>Season</th><td>{{ brief.season }}</td></tr>
+      <tr><th>Brand</th><td>{{ brief.brand }}</td></tr>
+      <tr><th>Subcategory</th><td>{{ brief.subcategory }}</td></tr>
+      <tr><th>Design</th><td>{{ brief.design }}</td></tr>
+      <tr><th>Target MRP</th><td>{{ brief.target_mrp }}</td></tr>
+      <tr><th>Market focus</th><td>{{ brief.market_focus }}</td></tr>
+      <tr><th>Expected Qty</th><td>{{ brief.expected_sales_qty }}</td></tr>
+      <tr><th>Color req</th><td>{{ brief.color_requirements }}</td></tr>
+      <tr><th>Remarks</th><td>{{ brief.pm_general_remarks }}</td></tr>
+      <tr><th>Status</th><td><span class="badge bg-info text-dark">{{ brief.status }}</span></td></tr>
+    </table>
+    <h6>Concepts</h6>
+    <ul>
+      {% for c in concepts %}
+        <li><a href="{{ url_for('concept_view', id=c.id) }}">{{ c.nd_no or ('Concept ' ~ c.id) }}</a> – {{ c.status }}</li>
+      {% else %}
+        <li>No concepts yet.</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="col-md-4">
+    {% if brief.pm_reference_image_url %}
+      <img src="{{ brief.pm_reference_image_url }}" class="img-fluid rounded border" onerror="this.style.display='none'">
+    {% endif %}
+    {% if brief.status=='Draft' %}
+    <form method="post" action="{{ url_for('pm_brief_submit', id=brief.id) }}" class="mt-3">
+      <button class="btn btn-success w-100">Submit to NPD</button>
+    </form>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

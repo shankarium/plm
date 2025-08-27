@@ -1,0 +1,33 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h4>PM Briefs</h4>
+  <a class="btn btn-primary" href="{{ url_for('pm_brief_new') }}">+ New Brief</a>
+</div>
+<table class="table table-hover table-sm">
+  <thead><tr>
+    <th>ID</th><th>Project No</th><th>Season</th><th>Brand</th><th>Subcategory</th><th>Target MRP</th><th>Status</th><th></th>
+  </tr></thead>
+  <tbody>
+  {% for r in rows %}
+  <tr>
+    <td>{{ r.id }}</td>
+    <td><a href="{{ url_for('brief_detail', id=r.id) }}">{{ r.project_no }}</a></td>
+    <td>{{ r.season }}</td>
+    <td>{{ r.brand }}</td>
+    <td>{{ r.subcategory }}</td>
+    <td>{{ r.target_mrp }}</td>
+    <td><span class="badge bg-info text-dark">{{ r.status }}</span></td>
+    <td>
+      {% if r.status=='Draft' %}
+      <form method="post" action="{{ url_for('pm_brief_submit', id=r.id) }}">
+        <button class="btn btn-sm btn-success">Submit to NPD</button>
+      </form>
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

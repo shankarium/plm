@@ -1,0 +1,19 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h4>NPD Intake – Submitted Briefs</h4>
+<table class="table table-hover table-sm">
+  <thead><tr><th>ID</th><th>Project</th><th>Season</th><th>Brand</th><th>Action</th></tr></thead>
+  <tbody>
+  {% for r in rows %}
+  <tr>
+    <td>{{ r.id }}</td>
+    <td><a href="{{ url_for('brief_detail', id=r.id) }}">{{ r.project_no }}</a></td>
+    <td>{{ r.season }}</td>
+    <td>{{ r.brand }}</td>
+    <td><a class="btn btn-sm btn-primary" href="{{ url_for('concept_new', brief_id=r.id) }}">Create Concept</a></td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

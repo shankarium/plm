@@ -1,0 +1,19 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h4>NPD Concepts</h4>
+<table class="table table-hover table-sm">
+  <thead><tr><th>ID</th><th>ND No</th><th>Brand Sug.</th><th>Proposed MRP</th><th>Status</th></tr></thead>
+  <tbody>
+  {% for r in rows %}
+  <tr>
+    <td><a href="{{ url_for('concept_view', id=r.id) }}">{{ r.id }}</a></td>
+    <td>{{ r.nd_no }}</td>
+    <td>{{ r.brand_suggestion }}</td>
+    <td>{{ r.proposed_mrp }}</td>
+    <td>{{ r.status }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

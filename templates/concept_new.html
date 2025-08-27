@@ -1,0 +1,66 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h4>Create Concept for Brief #{{ brief.id }} ({{ brief.project_no }})</h4>
+<form method="post" enctype="multipart/form-data" class="row g-3">
+  <div class="col-md-3">
+    <label class="form-label">ND No</label>
+    <input class="form-control" name="nd_no" required>
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">Proposed MRP</label>
+    <input class="form-control" name="proposed_mrp" type="number">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Brand Suggestion</label>
+    <input class="form-control" name="brand_suggestion">
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">Upper Material</label>
+    <input class="form-control" name="upper_material">
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">Lining</label>
+    <input class="form-control" name="lining">
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">Insole</label>
+    <input class="form-control" name="insole">
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">Outsole</label>
+    <input class="form-control" name="outsole">
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Construction</label>
+    <input class="form-control" name="construction" placeholder="Cemented / Strobel ...">
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Size Curve</label>
+    <input class="form-control" name="size_curve" placeholder="Ladies 36-41 (10/15/25/25/15/10)">
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Colorways (text)</label>
+    <input class="form-control" name="colorways" placeholder="Black; Tan; Navy/Tan">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Article Image (upload)</label>
+    <input type="file" name="article_image_file" class="form-control">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Article Image URL (optional)</label>
+    <input class="form-control" name="article_image_url" placeholder="https://...">
+  </div>
+  <div class="col-md-12">
+    <label class="form-label">NPD Remarks</label>
+    <textarea class="form-control" name="npd_remarks" rows="3"></textarea>
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Created By</label>
+    <input class="form-control" name="created_by" value="npd_user@company.com">
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary">Save & Send to PM</button>
+  </div>
+</form>
+{% endblock %}
