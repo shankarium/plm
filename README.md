@@ -1,28 +1,24 @@
-# Footwear PLM (Light) – Stage 1
+# Footwear PLM (Light) – Auth + Admin
 
-A lightweight Flask + SQLite app implementing Stage‑1 of your PLM:
-PM input → NPD development → PM finalization → Sales catalog, with simple tracking.
+Includes username/password login with roles and an Admin panel to clear test data.
 
-## Deploy (quick options)
-### Render.com
-1. Push this folder to a new GitHub repo.
-2. Create a new Web Service on Render → select the repo.
-3. Build Command: `pip install -r requirements.txt`
-4. Start Command: `gunicorn app:app`
-5. Add environment variable: `FLASK_ENV=production`
+## Default Users (auto-seeded)
+- admin / admin123 (Admin)
+- pmuser / test123 (PM)
+- npduser / test123 (NPD)
+- pmfinal / test123 (PM-Final)
+- salesuser / test123 (Sales)
 
-### Railway.app / Heroku
-- Similar steps: install requirements, start `gunicorn app:app`.
+## Deploy on Render
+1) Push to GitHub.
+2) New Web Service → Build: `pip install -r requirements.txt` → Start: `gunicorn app:app`
+3) Add env var: `SECRET_KEY=<random>`
+4) (Optional) Add a persistent disk mounted at `/opt/render/project/src` (for SQLite + uploads persistence).
 
-### Local run
+## Local run
 ```
 pip install -r requirements.txt
 export FLASK_ENV=development
+export SECRET_KEY=dev-secret
 python app.py
 ```
-Open http://localhost:5000
-
-## Notes
-- Uses SQLite `plm.db` in app root.
-- Image uploads go to `static/uploads/`. For production, use S3.
-- Very simple auth (role switcher) for demo. Add real auth later.
