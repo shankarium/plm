@@ -1,16 +1,15 @@
-
 {% extends "base.html" %}
 {% block content %}
-<div class="row g-4">
-  <div class="col-md-6">
+<div class='row g-4'>
+  <div class='col-md-6'>
     {% set img = c.article_image_url %}
     {% if s and s.final_presentation_image_url %}{% set img = s.final_presentation_image_url %}{% endif %}
-    {% if img %}<img src="{{ img }}" class="img-fluid rounded border" onerror="this.style.display='none'">{% endif %}
+    {% if img %}<img src='{{ img }}' class='img-fluid rounded border' onerror="this.style.display='none'">{% endif %}
   </div>
-  <div class="col-md-6">
+  <div class='col-md-6'>
     <h4>{{ c.nd_no or ('Concept ' ~ c.id) }}</h4>
-    <p class="text-muted">{{ c.project_no }} • {{ c.season }} • {{ c.brand }} • {{ c.subcategory }}</p>
-    <table class="table table-sm">
+    <p class='text-muted'>{{ c.project_no }} • {{ c.season }} • {{ c.brand }} • {{ c.subcategory }}</p>
+    <table class='table table-sm'>
       <tr><th>Proposed MRP</th><td>{{ c.proposed_mrp }}</td></tr>
       <tr><th>Brand Suggestion</th><td>{{ c.brand_suggestion }}</td></tr>
       <tr><th>Upper</th><td>{{ c.upper_material }}</td></tr>
@@ -24,7 +23,7 @@
     {% if s %}
       <h6>Sales Notes</h6>
       <p>{{ s.selling_story }}</p>
-      <p class="small text-muted">{{ s.sales_remarks }}</p>
+      <p class='small text-muted'>{{ s.sales_remarks }}</p>
     {% endif %}
   </div>
 </div>

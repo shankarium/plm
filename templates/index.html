@@ -1,13 +1,16 @@
-
 {% extends "base.html" %}
 {% block content %}
-<div class="p-4 bg-light rounded-3">
-  <h2 class="mb-3">Footwear PLM (Stage‑1 Light)</h2>
-  <p class="mb-1">PM → NPD → PM Finalization → Sales Catalog</p>
-  <p class="text-muted">Use the nav to start. Or choose a role:</p>
-  <a class="btn btn-primary me-2" href="{{ url_for('pm_briefs') }}">PM</a>
-  <a class="btn btn-secondary me-2" href="{{ url_for('npd_briefs') }}">NPD</a>
-  <a class="btn btn-success me-2" href="{{ url_for('pm_finalize_list') }}">PM Finalization</a>
-  <a class="btn btn-warning" href="{{ url_for('sales_catalog') }}">Sales</a>
+<div class='p-4 bg-light rounded-3'>
+  <h2 class='mb-2'>Footwear PLM (Stage-1)</h2>
+  <p class='mb-3'>PM → NPD → PM Finalization → Sales</p>
+  <div class='d-flex gap-2'>
+    <a class='btn btn-primary' href='{{ url_for("pm_briefs") }}'>PM</a>
+    <a class='btn btn-secondary' href='{{ url_for("npd_briefs") }}'>NPD</a>
+    <a class='btn btn-success' href='{{ url_for("pm_finalize_list") }}'>PM Finalize</a>
+    <a class='btn btn-warning' href='{{ url_for("sales_catalog") }}'>Sales</a>
+    {% if session.get('role') == 'Admin' %}
+    <a class='btn btn-outline-danger' href='{{ url_for("admin_home") }}'>Admin</a>
+    {% endif %}
+  </div>
 </div>
 {% endblock %}

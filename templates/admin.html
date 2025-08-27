@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+<h4>Admin Panel</h4>
+<div class='row g-3 mb-3'>
+  <div class='col'><div class='alert alert-secondary'>Briefs: <strong>{{ counts.briefs }}</strong></div></div>
+  <div class='col'><div class='alert alert-secondary'>Concepts: <strong>{{ counts.concepts }}</strong></div></div>
+  <div class='col'><div class='alert alert-secondary'>Sales: <strong>{{ counts.sales }}</strong></div></div>
+  <div class='col'><div class='alert alert-secondary'>Users: <strong>{{ counts.users }}</strong></div></div>
+</div>
+
+<form method='post' action='{{ url_for("admin_clear_all") }}' onsubmit="return confirm('Delete ALL briefs, concepts and sales?')">
+  <button class='btn btn-danger mb-4'>Clear ALL Test Data</button>
+</form>
+
+<div class='row g-4'>
+  <div class='col-md-6'>
+    <h6>Recent Briefs</h6>
+    <table class='table table-sm'>
+      <thead><tr><th>ID</th><th>Project</th><th>Status</th><th></th></tr></thead>
+      <tbody>
+      {% for b in briefs %}
+        <tr>
+          <td>{{ b.id }}</td>
+          <td>{{ b.project_no }}</td>
+          <td>{{ b.status }}</td>
+          <td>
+            <form method='post' action='{{ url_for("admin_delete_brief", id=b.id) }}' onsubmit="return confirm('Delete brief {{ b.id }}?')">
+              <button class='btn btn-sm btn-outline-danger'>Delete</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class='col-md-6'>
+    <h6>Recent Concepts</h6>
+    <table class='table table-sm'>
+      <thead><tr><th>ID</th><th>ND No</th><th>Status</th><th></th></tr></thead>
+      <tbody>
+      {% for c in concepts %}
+        <tr>
+          <td>{{ c.id }}</td>
+          <td>{{ c.nd_no }}</td>
+          <td>{{ c.status }}</td>
+          <td>
+            <form method='post' action='{{ url_for("admin_delete_concept", id=c.id) }}' onsubmit="return confirm('Delete concept {{ c.id }}?')">
+              <button class='btn btn-sm btn-outline-danger'>Delete</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class='col-md-6'>
+    <h6>Recent Sales Info</h6>
+    <table class='table table-sm'>
+      <thead><tr><th>ID</th><th>Concept</th><th>Margin</th><th></th></tr></thead>
+      <tbody>
+      {% for s in sales %}
+        <tr>
+          <td>{{ s.id }}</td>
+          <td>{{ s.concept_id }}</td>
+          <td>{{ s.margin_pct }}</td>
+          <td>
+            <form method='post' action='{{ url_for("admin_delete_sales", id=s.id) }}' onsubmit="return confirm('Delete sales record {{ s.id }}?')">
+              <button class='btn btn-sm btn-outline-danger'>Delete</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class='col-md-6'>
+    <h6>Users</h6>
+    <table class='table table-sm'>
+      <thead><tr><th>ID</th><th>Username</th><th>Role</th></tr></thead>
+      <tbody>
+      {% for u in users %}
+        <tr><td>{{ u.id }}</td><td>{{ u.username }}</td><td>{{ u.role }}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <p class='text-muted small'>User creation/reset can be added later.</p>
+  </div>
+</div>
+{% endblock %}
